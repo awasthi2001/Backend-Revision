@@ -1,20 +1,5 @@
 [
   {
-    "id": 1,
-    "status": false,
-    "todo": "EAT"
-  },
-  {
-    "todo": "EAT",
-    "status": false,
-    "id": 2
-  },
-  {
-    "todo": "EAT",
-    "status": false,
-    "id": 3
-  },
-  {
     "todo": "EAT",
     "status": false,
     "id": 4

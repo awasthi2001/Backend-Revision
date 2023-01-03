@@ -38,7 +38,21 @@ const updateAllTodos = (data)=>{
     data.push(updated);
     await updateAllTodos(data)
     return updated
-     
 }
 
- module.exports  = {handlePost,readallTodos}
+let handleDelete = async(id)=>{
+    const data =await readallTodos()
+    let idx =0;
+    for(let i=0; i<data.length; i++){
+    if(id==data[i].id){
+        idx = i;
+        break;
+    }
+    }
+  let deletedTodo = data.splice(idx,1);
+  await updateAllTodos(data);
+  return deletedTodo;
+}
+
+
+ module.exports  = {handlePost,readallTodos,handleDelete}

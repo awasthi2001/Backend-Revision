@@ -1,5 +1,5 @@
 const express = require('express');
-const { handlePost, readallTodos } = require('./handlers.js');
+const { handlePost, readallTodos, handleDelete } = require('./handlers.js');
 
 const app = express();
 app.use(express.json())
@@ -17,6 +17,16 @@ app.post('/', async function(req, res){
 app.get('/',async(req,res)=>{
     let data = await readallTodos()
     res.status(200).send(data)
+})
+app.delete('/:id',async(req,res)=>{
+    let {id} = req.params;
+    let deletedTodo = await handleDelete(id);
+    res.status(200).send(
+        {
+            message :'successfully deleted',
+            todo : deletedTodo
+        }
+    )
 })
 app.listen(8001,(err)=>{
     if(err){
