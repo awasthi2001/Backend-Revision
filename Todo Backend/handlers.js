@@ -53,6 +53,16 @@ let handleDelete = async(id)=>{
   await updateAllTodos(data);
   return deletedTodo;
 }
+let handleUpdate = async (id,todo)=>{
+ const data = await readallTodos();
+ let updatedTodo = data.map((ele,idx)=>{
+   return id==ele.id ? {...ele,...todo} : ele;
+ })
+ for(let i=0; i<updatedTodo.length; i++){
+  data[i] = updatedTodo[i];
+ }
+ await updateAllTodos(data);
+ return true;
+}
 
-
- module.exports  = {handlePost,readallTodos,handleDelete}
+ module.exports  = {handlePost,readallTodos,handleDelete,handleUpdate}

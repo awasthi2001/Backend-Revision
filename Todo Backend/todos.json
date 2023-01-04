@@ -1,12 +1,7 @@
 [
   {
-    "todo": "EAT",
+    "todo": "dancing",
     "status": false,
-    "id": 4
-  },
-  {
-    "todo": "SLEEP",
-    "status": false,
-    "id": 5
+    "id": 1
   }
 ]

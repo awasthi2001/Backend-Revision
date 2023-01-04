@@ -1,5 +1,5 @@
 const express = require('express');
-const { handlePost, readallTodos, handleDelete } = require('./handlers.js');
+const { handlePost, readallTodos, handleDelete, handleUpdate } = require('./handlers.js');
 
 const app = express();
 app.use(express.json())
@@ -27,6 +27,13 @@ app.delete('/:id',async(req,res)=>{
             todo : deletedTodo
         }
     )
+})
+app.patch('/:id',(req,res)=>{
+    let {id} = req.params;
+    let updatedTodo =  handleUpdate(id,req.body)
+    res.send({
+        message :'successfully updated'
+    })
 })
 app.listen(8001,(err)=>{
     if(err){
