@@ -1,10 +1,8 @@
 import { Router } from "express";
+import { handlePost } from "../Controllers/books.controller.js";
 
 
 export const BookRouter = Router();
 
 
-BookRouter.post('/',function(req,res){
-    const book = req.body;
-    console.log(book)
-})
+BookRouter.post('/',handlePost)
