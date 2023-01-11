@@ -1,3 +1,4 @@
+import { Record } from "../Middleware/Record.js";
 import { Books } from "../Models/books.model.js";
 
 
@@ -49,8 +50,8 @@ export async function handlePatch(req,res){
         let {id} = req.params
         let data = req.body;
         if(id && data){
-          let updated = await Books.findByIdAndUpdate(id,data,{new : true})
-
+          let updated = await Books.findByIdAndUpdate({ _id: id },data,{new : true})
+          Record(id,"updated")
          res.status(200).send({
             messgae : 'success',
             updated : updated
@@ -72,10 +73,17 @@ export async function handleDelete(req,res){
     try {
         let {id} = req.params
         if(id){
-          await Books.findByIdAndDelete(id)
-         res.status(200).send({
-            messgae : 'successfully deleted'
-         })
+           let data = await Books.findByIdAndDelete(id)
+           if(data!=null){
+            await Record(id,"deleted")
+            res.status(200).send({
+               messgae : 'successfully deleted'
+            })
+           }else{
+            res.status(404).send({
+                message : 'Not found'
+            })
+           }
         }else{
           res.status(404).send({
             message : 'Bad Request'
