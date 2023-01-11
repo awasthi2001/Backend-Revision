@@ -43,3 +43,48 @@ export async function handleGet(req,res){
         })
     }
 }
+
+export async function handlePatch(req,res){     
+    try {
+        let {id} = req.params
+        let data = req.body;
+        if(id && data){
+          let updated = await Books.findByIdAndUpdate(id,data,{new : true})
+
+         res.status(200).send({
+            messgae : 'success',
+            updated : updated
+         })
+        }else{
+          res.status(404).send({
+            message : 'Bad Request'
+          })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({
+            message : 'Something went wrong'
+        })
+    }
+}
+
+export async function handleDelete(req,res){     
+    try {
+        let {id} = req.params
+        if(id){
+          await Books.findByIdAndDelete(id)
+         res.status(200).send({
+            messgae : 'successfully deleted'
+         })
+        }else{
+          res.status(404).send({
+            message : 'Bad Request'
+          })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({
+            message : 'Something went wrong'
+        })
+    }
+}
