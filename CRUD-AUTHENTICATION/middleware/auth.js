@@ -5,7 +5,7 @@ export default function Auth(req,res,next) {
  try {
     jwt.verify(token,secretKey,(err,decode)=>{
         if(decode){
-            next();
+            next(); 
         }else{
             res.status(400).send({
                 message : 'login first'
