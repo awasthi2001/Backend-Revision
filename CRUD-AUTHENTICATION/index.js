@@ -60,7 +60,7 @@ app.get("/data", Auth, (req, res) => {
 });
 
 app.listen(8080, async () => {
-  try {
+  try { 
     let res = await Connection();
     console.log(res);
     console.log("Running on port 8080");
