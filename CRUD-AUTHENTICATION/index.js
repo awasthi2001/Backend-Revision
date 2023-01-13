@@ -44,7 +44,6 @@ app.post("/login", async (req, res) => {
       res.send("please enter all details");
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Something went wrong",
     });
