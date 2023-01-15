@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv');
+dotenv.config()
 
 export async function Connection(){
     return new Promise(function(resolve, reject){
-        mongoose.connect('mongodb+srv://akshansh:<password>@cluster0.8meu9xh.mongodb.net/Notes_FullStack?retryWrites=true&w=majority',(err)=>{
+        mongoose.connect(process.env.MongoURL,(err)=>{
             if(err){
             reject('Not connected to DB server')
             }else{
