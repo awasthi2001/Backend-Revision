@@ -1,5 +1,7 @@
 const express = require('express');
-
+const Connection = require('./config/db.js')
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
 const app = express();
 
 
@@ -15,5 +17,11 @@ app.get('/',(req,res)=>{
 
 
 app.listen(8000,()=>{
-  console.log('listening on',8080)
+  Connection().then((res)=>{
+    console.log(res)
+    console.log('listening on',8080)
+  }).catch((err)=>{
+   console.log(err)
+  })
+ 
 })

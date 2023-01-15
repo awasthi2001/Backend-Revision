@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config()
 
-export async function Connection(){
+async function Connection(){
     return new Promise(function(resolve, reject){
         mongoose.connect(process.env.MongoURL,(err)=>{
             if(err){
@@ -13,3 +13,5 @@ export async function Connection(){
         })
     })
 }
+
+module.exports = Connection
