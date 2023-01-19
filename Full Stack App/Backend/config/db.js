@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
 dotenv.config()
 
-async function Connection(){
+export async function Connection(){
     return new Promise(function(resolve, reject){
         mongoose.connect(process.env.MongoURL,(err)=>{
             if(err){
@@ -14,4 +14,3 @@ async function Connection(){
     })
 }
 
-module.exports = Connection
