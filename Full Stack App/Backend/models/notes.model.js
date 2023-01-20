@@ -5,7 +5,7 @@ const NotesSchema = mongoose.Schema(
      title : String,
      note : String,
      category : String,
-     author : String,
+     userId : String,
     },
     {
         versionKey : false,
@@ -14,3 +14,12 @@ const NotesSchema = mongoose.Schema(
 )
 
 export const NoteModel = mongoose.model("note",NotesSchema)
+
+
+/*
+user_id who is making the request 
+
+user_id which is present in the note
+
+
+*/
