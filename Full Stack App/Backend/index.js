@@ -3,18 +3,23 @@ import {Connection} from './config/db.js';
 import { set } from 'mongoose';
 import { userRouter } from './routes/user.routes.js';
 import { authenticate } from './middleware/Authenticate.js';
+import { notesRouter } from './routes/notes.routes.js';
 set('strictQuery', true);
 const app = express();
 app.use(express.json())
 
-app.use('/user',userRouter)
-
-
-
-
-app.get('/',authenticate,(req,res)=>{
-    res.send('welcome to full stack application')
+app.get('/',(req,res)=>{
+  res.send('welcome to full stack application')
 })
+
+app.get('*',(req,res)=>{
+res.send("Invalid endpoint")
+})
+
+app.use('/user',userRouter)
+app.use(authenticate)
+app.use('/notes',notesRouter);
+
 
 
 
