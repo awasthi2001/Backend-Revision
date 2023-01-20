@@ -7,6 +7,8 @@ export const authenticate = (req,res,next)=>{
     if(token){
       jwt.verify(token,process.env.SECRET_KEY,(err,decoded)=>{
         if(decoded){
+          let userId = decoded.user_id;
+           req.body.userId = userId;
            next();
         }else{
            res.status(400).send({
