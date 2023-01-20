@@ -56,11 +56,18 @@ notesRouter.patch("/update/:id",async (req, res) => {
 });
 
 notesRouter.delete("/delete/:id", async(req, res) => {
-  //logic to delete the notes
+
+  const id  = req.params.id;
+  const note = await NoteModel.findOne({_id:id});
+  const userID_in_note = note.userId;
+  const userId_making_request = req.body.userId;
   try {
-    const id  = req.params.id;
-    await NoteModel.findByIdAndDelete({_id:id});
-    res.send("Deleted the note")
+    if(userID_in_note==userId_making_request){
+      await NoteModel.findByIdAndDelete({_id:id});
+      res.send("Deleted the note")
+    }else{
+      res.send({"msg":"you are not authorized"})
+    }
   } catch (error) {
     res.status(500).send({
       msg : 'something went wrong'
